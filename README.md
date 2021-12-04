@@ -1,3 +1,4 @@
+Marwa 
 # user-registration
 
 A simple 2 step registration process for users using the CodeIgniter Framework. The steps for registration is below:
@@ -9,7 +10,7 @@ A simple 2 step registration process for users using the CodeIgniter Framework. 
 
 ![alt tag](http://michaelsoriano.com/wp-content/uploads/2015/08/user-reg.gif)
 
-Complete with a login form, a password reset form and logout. Uses salt + encryption model for passwords, database stored Session. Uses Bootstrap for the forms. 
+Complete  with a login form, a password reset form and logout. Uses salt + encryption model for passwords, database stored Session. Uses Bootstrap for the forms. 
 
 Built mainly for tutorial purposes: http://michaelsoriano.com/building-a-user-registration-system-part-1-new-user-form/, but also good as a starting point for projects 
 
