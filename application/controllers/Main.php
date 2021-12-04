@@ -14,6 +14,7 @@ class Main extends CI_Controller {
             $this->status = $this->config->item('status'); 
             $this->roles = $this->config->item('roles');
 
+            $this->load->config('configmail');	
             $this->load->model('Usermodel', 'usermodel', TRUE);
 
         }      

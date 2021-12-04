@@ -49,6 +49,12 @@ class Usermodel extends CI_Model {
 
     public function sendpassword($data)
     {
+        $configmail = $this->config->item('configmail');
+        $smtp_password =  $configmail['SMTP_PASSWORD'];
+        $smtp_username =  $configmail['SMTP_USERNAME'];
+        $smtp_host =  $configmail['SMTP_HOST'];
+
+
         $email = $data['email'];
         $query1=$this->db->query("SELECT *  from users where email = '".$email."' ");
         $row=$query1->result_array();
@@ -78,11 +84,11 @@ class Usermodel extends CI_Model {
 
             $mail->SMTPSecure = "tls"; 
             $mail->Debugoutput = 'html';
-            $mail->Host = "smtp.gmail.com";
+            $mail->Host = $smtp_host;
             $mail->Port = 587;
             $mail->SMTPAuth = true;   
-            $mail->Username = $this->config->item('SMTP_USERNAME');   
-            $mail->Password = $this->config->item('SMTP_PASSWORD');
+            $mail->Username = $smtp_username;   
+            $mail->Password = $smtp_password;
             $mail->setFrom('admin@mail.com', 'admin');
             $mail->IsHTML(true);
             $mail->addAddress($email);
