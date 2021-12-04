@@ -13,13 +13,16 @@ class Main extends CI_Controller {
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             $this->status = $this->config->item('status'); 
             $this->roles = $this->config->item('roles');
+
+            $this->load->model('Usermodel', 'usermodel', TRUE);
+
         }      
     
 	public function index()
 	{   
-            if(empty($this->session->userdata['email'])){
-                redirect(site_url().'/main/login/');
-            }            
+            // if(empty($this->session->userdata['email'])){
+            //     redirect(site_url().'main/login/');
+            // }            
             /*front page*/
             $data = $this->session->userdata; 
             $this->load->view('header');            
@@ -117,7 +120,7 @@ class Main extends CI_Controller {
                 foreach($userInfo as $key=>$val){
                     $this->session->set_userdata($key, $val);
                 }
-                redirect(site_url().'main/');
+                redirect(site_url().'main');
                 
             }
         }
@@ -145,7 +148,7 @@ class Main extends CI_Controller {
                 foreach($userInfo as $key=>$val){
                     $this->session->set_userdata($key, $val);
                 }
-                redirect(site_url().'main/');
+                redirect(site_url().'main/index');
             }
             
         }
@@ -185,7 +188,7 @@ class Main extends CI_Controller {
                 $token = $this->user_model->insertToken($userInfo->id);                        
                 $qstring = $this->base64url_encode($token);                  
                 $url = site_url() . 'main/reset_password/token/' . $qstring;
-                $link = '<a href="' . $url . '">' . $url . '</a>'; 
+                $link = '<a href="' . $url . '">' . 'here' . '</a>'; 
                 
                 $message = '';                     
                 $message .= '<strong>A password reset has been requested for this email account</strong><br>';
@@ -207,7 +210,7 @@ class Main extends CI_Controller {
             
             if(!$user_info){
                 $this->session->set_flashdata('flash_message', 'Token is invalid or expired');
-                redirect(site_url().'main/login');
+                // redirect(site_url().'main/login');
             }            
             $data = array(
                 'firstName'=> $user_info->first_name, 
@@ -237,7 +240,7 @@ class Main extends CI_Controller {
                 }else{
                     $this->session->set_flashdata('flash_message', 'Your password has been updated. You may now login');
                 }
-                redirect(site_url().'main/login');                
+                redirect(site_url().'main/index');                
             }
         }
         
@@ -247,5 +250,12 @@ class Main extends CI_Controller {
 
     public function base64url_decode($data) { 
       return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
-    }       
+    } 
+    
+    
+    /*
+Forgotpassword email sender:
+No view
+*/
+
 }

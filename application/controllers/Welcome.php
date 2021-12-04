@@ -20,6 +20,40 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
-	}
+		$this->load->view('ForgotPassword');
+    }
+    
+    function __construct(){
+        parent::__construct();
+        $this->load->library('form_validation');    
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+        $this->load->model('Usermodel', 'usermodel', TRUE);
+
+    }  
+    
+    public function ForgotPassword()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email'); 
+                
+        if($this->form_validation->run() == FALSE) {
+            $this->load->view('header');
+            $this->load->view('forgot');
+            $this->load->view('footer');
+        }else{
+
+        $email = $this->input->post('email');      
+        $findemail = $this->usermodel->ForgotPassword($email);  
+        if($findemail){
+            $this->usermodel->sendpassword($findemail);        
+            }else{
+        $this->session->set_flashdata('msg',' Email not found!');
+        redirect(base_url().'user/Login','refresh');
+            }    
+        }
+    }
+
+
+    
+
 }
