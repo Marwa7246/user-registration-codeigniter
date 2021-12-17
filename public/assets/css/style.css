@@ -32,7 +32,7 @@ img {
   }
 
   .border-wrapper {
-    height: 9rem;
+    height: 15vw;
   }
 
  
@@ -72,9 +72,9 @@ img {
     font-size: 1rem;
 
   }
-  .border-wrapper {
+  /* .border-wrapper {
     height: 11rem;
-  }
+  } */
 
 }
 
@@ -93,9 +93,9 @@ img {
 
   }
 
-  .border-wrapper {
+  /* .border-wrapper {
     height: 10rem;
-  }
+  } */
 
 }
 
@@ -117,9 +117,9 @@ img {
   
     }
 
-    .border-wrapper {
+    /* .border-wrapper {
       height: 10rem;
-    }
+    } */
 
 
   }
